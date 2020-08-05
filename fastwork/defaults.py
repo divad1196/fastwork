@@ -1,0 +1,5 @@
+import os
+
+CALL_PATH = os.getcwd()
+DEFAULT_CONFIG_ENV_VAR = "MODULAR_APP_ENV"
+DEFAULT_CONFIG_NAME = "config.json"

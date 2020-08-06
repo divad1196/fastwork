@@ -1,2 +1,2 @@
-import fastwork
-fastwork.run()
+import fastframework
+fastframework.run()

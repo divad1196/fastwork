@@ -14,7 +14,7 @@ class DatabaseHandler:
         )
         self._model_load_registry = {}
         self._registry = {}
-    
+
     def _get_base_metaclass(self, name):
         class Base(self._base):
             __tablename__ = name
@@ -39,7 +39,12 @@ class DatabaseHandler:
                 tuple(reversed(inheritance)),
                 {}
             )
-    
+
+    def __iter__(self):
+        if self._registry:
+            return iter(self._registry)
+        return iter({})
+
     def __getitem__(self, model):
         return self._registry[model]
 
@@ -60,4 +65,3 @@ class DatabaseHandler:
         self._make_register()
         self._create_all()
 
-        

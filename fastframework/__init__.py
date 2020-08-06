@@ -1,5 +1,7 @@
 from .app import framework
 
+db = framework.db
+
 def init():
     return framework.init()
 

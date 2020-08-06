@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name='fastframework',
-    version='0.1',
+    version='0.2',
     author="Gallay David",
     author_email="davidtennis96@hotmail.com",
     description="A fastapi - sqlalchemy based framework",

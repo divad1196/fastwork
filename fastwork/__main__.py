@@ -1,0 +1,2 @@
+import fastwork
+fastwork.run()

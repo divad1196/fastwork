@@ -15,10 +15,13 @@ class Framework:
         self.app = FastAPI()
         self._create_db_mgr()
         self._create_modules_registry()
+        self._initialized = False
 
-    def _init(self):
-        self._init_modules_registry()
-        self._init_db_mgr()
+    def init(self):
+        if not self._initialized:
+            self._init_modules_registry()
+            self._init_db_mgr()
+            self._initialized = True
 
     def _create_db_mgr(self):
         database = self.config.get("database")
@@ -36,7 +39,7 @@ class Framework:
         self.modules.load_modules(modules)
 
     def run(self):
-        self._init()
+        self.init()
         server_params = self.config.get("server", {})
         uvicorn.run(self.app, **server_params)
 

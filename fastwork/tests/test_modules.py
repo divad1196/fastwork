@@ -1,6 +1,6 @@
 import fastwork
 framework = fastwork.framework
-framework._init()
+framework.init()
 
 Contact = framework.db["contact"]
 session = framework.db.session()

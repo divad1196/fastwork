@@ -2,15 +2,26 @@
 
 Framework based on fastapi and Sqlalchemy, handling configuration and app modules.
 
-
-
 <WORK in PROGRESS>
+
+This framework is currently in dev.
+
+## Installation
+
+```bash
+pip3 install fastwork
+```
+
+
+
+## Basic Run
 
 ```bash
 python3 -m fastwork
 ```
 
 Based on the found configuration, this will load all modules and run your app.
+You can pre-configure the framework before running it for specific use (Documentation to Do)
 
 ## Configuration
 
@@ -113,4 +124,12 @@ session = framework.db.session()
 
 contacts = session.query(Contact).all()
 ```
+
+
+
+
+
+## To Do
+
+1. Database migration automation, see [Alembic](https://alembic.sqlalchemy.org/en/latest/tutorial.html#the-migration-environment)
 

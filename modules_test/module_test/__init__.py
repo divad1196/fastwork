@@ -1,4 +1,4 @@
-from fastwork import register
+from fastframework import register
 from sqlalchemy import Boolean, Column, Integer, String
 
 @register("contact")

@@ -1,5 +1,5 @@
-import fastwork
-framework = fastwork.framework
+import fastframework
+framework = fastframework.framework
 framework.init()
 
 Contact = framework.db["contact"]

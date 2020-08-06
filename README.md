@@ -1,4 +1,4 @@
-# FastWork
+# Fastframework
 
 Framework based on fastapi and Sqlalchemy, handling configuration and app modules.
 
@@ -9,7 +9,7 @@ This framework is currently in dev.
 ## Installation
 
 ```bash
-pip3 install fastwork
+pip3 install fastframework
 ```
 
 
@@ -17,7 +17,7 @@ pip3 install fastwork
 ## Basic Run
 
 ```bash
-python3 -m fastwork
+python3 -m fastframework
 ```
 
 Based on the found configuration, this will load all modules and run your app.
@@ -55,7 +55,7 @@ You just have to write what you want to override, for example
 }
 ```
 
-Fastwork will look in the call path for fastwork.json, if it is not found, it will look for "FASTWORK_CONFIG" env variable for a valid config path.
+Fastframework will look in the call path for fastwork.json, if it is not found, it will look for "FASTWORK_CONFIG" env variable for a valid config path.
 Otherwise, the above default config is used.
 
 Configuration will normally be extendable for modules' needs.
@@ -74,16 +74,16 @@ They are mere python module.
 ```python
 # file 1
 
-from fastwork import register
+from fastframework import register
 from sqlalchemy import Boolean, Column, Integer, String
 
 @register("contact")
 class Contact:
     name = Column(String)
     forname = Column(String)
-    
+
 # file 2
-from fastwork import register
+from fastframework import register
 from sqlalchemy import Boolean, Column, Integer, String
 
 @register("contact")
@@ -91,7 +91,7 @@ class Contact:
     age = Column(Integer)
 ```
 
-the resulting class is 
+the resulting class is
 
 ```python
 class Contact:
@@ -107,8 +107,8 @@ class Contact:
 Example of use:
 
 ```python
-import fastwork
-framework = fastwork.framework
+import fastframework
+framework = fastframework.framework
 framework.init()  # for manual use only, no running server, implicitly done in run methode
 
 Contact = framework.db["contact"]

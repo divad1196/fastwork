@@ -1,0 +1,6 @@
+{
+    "modules": [
+        "modules_test/module_test",
+        "modules_test/module.py"
+    ]
+}

@@ -11,9 +11,9 @@ class WebConfig(BaseModel):
     cors: List[str] = []
 
 class ConfigSchema(BaseModel):
-    database: str = "sqlite:///default.db"
+    database: str = "sqlite:///fastwork.db"
     web: WebConfig = WebConfig()  # Possible because WebConfig is default constructible
     server: ServerConfig = ServerConfig()
     modules: List[Path] = []
     base_path: Optional[Path]
-     
+

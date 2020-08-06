@@ -14,13 +14,14 @@ class ModuleRegistry:
         self._registry = {}
 
     def import_module(self, path: Path):
-        if not path.is_dir():
-            return
-        init_file = path.joinpath("__init__.py")
-        if not init_file.is_file():
-            return
         name = path.stem
-        return SourceFileLoader(name, str(init_file.resolve())).load_module()
+        if path.is_file():
+            SourceFileLoader(name, str(path.resolve())).load_module()
+        if path.is_dir():
+            init_file = path.joinpath("__init__.py")
+            if init_file.is_file():
+                return SourceFileLoader(name, str(init_file.resolve())).load_module()
+        return
 
     def _load_module(self, module: PathType, base_path: PathType):
         module_path = Path(base_path).joinpath(module).resolve()
@@ -39,14 +40,14 @@ class ModuleRegistry:
             self._load_module(m, base_path)
 
     # def reload(self):
-    #     for 
+    #     for
 
     def __getitem__(self, module):
         return self._registry[module]["module"]
-    
+
     def __iter__(self):
         return iter(self._registry)
-    
+
     def items(self):
         return {
             key: value["module"]
@@ -59,6 +60,6 @@ class ModuleRegistry:
 
     def module_objects(self):
         return [m["module"] for m in self._registry.values()]
-    
+
     def module_path(self, module):
         return self._registry[module]["path"]

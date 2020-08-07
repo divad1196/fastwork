@@ -36,7 +36,7 @@ class Framework:
     def _init_modules_registry(self):
         modules = self.config.get("modules", [])
         base_path = self.config.get("modules", [])
-        self.modules.load_modules(modules)
+        self.modules.import_modules(modules)
 
     def run(self):
         self.init()

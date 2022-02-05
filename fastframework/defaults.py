@@ -3,4 +3,3 @@ import os
 CALL_PATH = os.getcwd()
 DEFAULT_CONFIG_ENV_VAR = "FASTWORK_CONFIG"
 DEFAULT_CONFIG_NAME = "fastwork.json"
-DEFAULT_MODULE_CONFIG_FILENAME = "manifest.json"

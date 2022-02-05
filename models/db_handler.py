@@ -2,11 +2,13 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, Boolean, Column, ForeignKey, Integer, String
+from .alembic import run_migrations
 
 class DatabaseHandler:
-    def __init__(self, url, **kwargs):
+    def __init__(self, dsn: str, **kwargs):
         self._base = declarative_base()
-        self._engine = create_engine(url, connect_args={"check_same_thread": False}, **kwargs)
+        self._dsn = dsn  # data source name, e.g. "sqlite:///fastwork.db"
+        self._engine = create_engine(dsn, connect_args={"check_same_thread": False}, **kwargs)
         self._SessionMaker = sessionmaker(
             autocommit=False,
             autoflush=False,
@@ -57,6 +59,9 @@ class DatabaseHandler:
             yield session
         finally:
             session.close()
+
+    def migrate(self):
+        run_migrations(self._dsn, )
 
     def session(self):
         return self._SessionMaker()

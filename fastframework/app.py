@@ -3,7 +3,7 @@ app = FastAPI()
 
 import uvicorn
 
-from .modules import ModuleRegistry
+from ModuleHandler import ModuleRegistry
 from .models import DatabaseHandler
 from .config import Config
 
@@ -16,6 +16,10 @@ class Framework:
         self._create_db_mgr()
         self._create_modules_registry()
         self._initialized = False
+
+    def reset(self):
+        self._initialized = False
+        self.init()
 
     def init(self):
         if not self._initialized:
@@ -35,7 +39,7 @@ class Framework:
 
     def _init_modules_registry(self):
         modules = self.config.get("modules", [])
-        base_path = self.config.get("modules", [])
+        base_path = self.config.get("base_path", [])
         self.modules.import_modules(modules)
 
     def run(self):
